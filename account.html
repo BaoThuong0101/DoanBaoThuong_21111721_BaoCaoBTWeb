@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+<body>
+    <div id="userTable"></div>
+
+    <script>
+        const nguoiDungString = localStorage.getItem("nguoiDung");
+        const nguoiDung = JSON.parse(nguoiDungString);
+
+        // Kiểm tra xem nguoiDung có tồn tại không
+        if (nguoiDung) {
+            // Tạo chuỗi HTML
+            const htmlString = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Đăng Nhập</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Mật Khẩu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>${nguoiDung.tenDangNhap}</td>
+                            <td>${nguoiDung.soDienThoai}</td>
+                            <td>${nguoiDung.email}</td>
+                            <td>${nguoiDung.matKhau}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+
+            // Gán chuỗi HTML vào phần tử có id là "userTable"
+            document.getElementById("userTable").innerHTML = htmlString;
+        } else {
+            console.log("Không tìm thấy thông tin người dùng.");
+        }
+    </script>
+</body>
+</html>
